@@ -13,5 +13,5 @@ type result = TupleToObject<typeof tuple> // expected { tesla: 'tesla', 'model 3
 
 type TupleToObject<T extends readonly any[]> = {
 
-    [K in T[number]] : T[K]
+    [K in T[number]] : K
 }
