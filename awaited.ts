@@ -16,4 +16,7 @@ type cases = [
 
 */
 
-type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer A> ? A extends Promise<unknown> ? MyAwaited<A> : A : never
+type Same<T1, T2> = T1 extends T2 ? (T2 extends T1 ? true : false) : false;  //doesnt work with readonly
+
+type Equal<T1,T2> = <G>() => G extends T1 ? 1 : 2 extends <G>() => G extends T2 ? 1 : 2 ? true : false;
+type Includes<T extends readonly any[], U> = T extends [infer First,... infer Rest] ? (Equal<First, U> extends true ? true  : Includes<Rest, U>) : false;
